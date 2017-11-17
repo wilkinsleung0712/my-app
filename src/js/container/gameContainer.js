@@ -23,8 +23,8 @@ class GameContainer extends React.Component {
         Actions.move(i);
     }
 
-    handleOnClick(i){
-        Actions.move(i);
+    handleOnHistoryClick(step){
+        Actions.displayStep(step);
     }
 
     render(){

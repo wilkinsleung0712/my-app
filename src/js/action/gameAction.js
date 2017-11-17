@@ -8,6 +8,10 @@ const Actions = {
 
     move(i) {
         GameDispatcher.dispatch({actionType: GameActionTypes.MOVE, payload:{position:i}})
+    },
+
+    displayStep(step){
+        GameDispatcher.dispatch({actionType:GameActionTypes.DISPLAYHISTORY, payload:{step:step}})
     }
 
 };

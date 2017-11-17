@@ -10,39 +10,14 @@ class Game extends React.Component {
 
     handleClick(i) {
         console.log('handle this click');
-        // const history = this.state.history;
-        // const current = history[history.length - 1];
-
-        // const squares = current
-        //     .squares
-        //     .slice();
-
-        // if (calculateWinner(squares) || squares[i]) {
-        //     return;
-        // }
-        // squares[i] = this.state.xIsNext
-        //     ? 'X'
-        //     : 'O';
-        // this.setState({
-        //     history: this
-        //         .state
-        //         .history
-        //         .concat([
-        //             {
-        //                 squares: squares
-        //             }
-        //         ]),
-        //     stepNumber: history.length,
-        //     xIsNext: !this.state.xIsNext
-        // });
     }
 
-    // jumpTo(step) {
-    //     this.setState({
-    //         stepNumber: step,
-    //         xIsNext: (step % 2) === 0
-    //     });
-    // }
+    jumpTo(step) {
+        this.setState({
+            stepNumber: step,
+            xIsNext: (step % 2) === 0
+        });
+    }
 
     render() {
         const history = this.props.gameData.history;
@@ -54,7 +29,7 @@ class Game extends React.Component {
             const desc = move? 'Go to move #' + move : 'Go to game start';
             return (
                 <li key={move}>
-                  <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                  <button onClick={() => this.props.onHistoryClick(move)}>{desc}</button>
                 </li>)
         });
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

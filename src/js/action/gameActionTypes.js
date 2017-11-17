@@ -1,4 +1,5 @@
 const GameActionTypes = {
-    MOVE:'MOVE'
+    MOVE:'MOVE',
+    DISPLAYHISTORY:'DISPLAYHISTORY'
   };
 export default GameActionTypes;

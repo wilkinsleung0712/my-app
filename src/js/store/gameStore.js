@@ -8,7 +8,8 @@ import GameDispatcher from '../dispatcher/gameDispatcher';
 // Action handler map //
 ////////////////////////
 const ACTION_HANDLERS = {
-    [GameActionTypes.MOVE]: move
+    [GameActionTypes.MOVE]: move,
+    [GameActionTypes.DISPLAYHISTORY]:displayHistory
 }
 
 
@@ -19,6 +20,20 @@ export function initGameResponse(){
     return Actions.initGame;
 }
 
+export function displayHistory(state,action){
+    console.log('go and display history on ' + action.payload.step);
+    if(action.payload.step){
+        const step = action.payload.step;
+        return Object.assign({},
+            state,
+            {
+                stepNumber:step,xIsNext:(step%2)===0
+            }
+        )
+    }
+    return state;
+}
+
 export function move(state,action){
 
     const gameStatus = state.gameEnded;
@@ -26,7 +41,7 @@ export function move(state,action){
         return state;
     }
     // we get all history
-    const history = state.history;
+    const history = state.history.slice(0,state.stepNumber+1);
     // we find the latest history as current step
     const current = history[history.length-1];
     // we take a copy of the current squares
@@ -45,7 +60,7 @@ export function move(state,action){
                     xIsNext:!current.xIsNext,
                 }
             ]),
-            stepNumber:state.stepNumber+1,
+            stepNumber:history.length,
             gameEnded:result,
             winner:winner
         };
