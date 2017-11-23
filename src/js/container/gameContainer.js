@@ -1,37 +1,46 @@
-import { Container } from 'flux/utils';
+import {Container} from 'flux/utils';
 import React from 'react';
 
 import GameStore from '../store/gameStore';
 import Game from '../component/game';
+import Demo from '../component/demo';
 
 import Actions from '../action/gameAction';
+import 'antd/dist/antd.css'
 
 class GameContainer extends React.Component {
 
-    static getStores(){
+    static getStores() {
         return [GameStore];
     }
 
-    static calculateState(){
+    static calculateState() {
         // calc how state change
         return {
-            gameData:GameStore.getState()
+            gameData: GameStore.getState()
         };
     }
 
-    handleOnClick(i){
+    handleOnClick(i) {
         Actions.move(i);
     }
 
-    handleOnHistoryClick(step){
+    handleOnHistoryClick(step) {
         Actions.displayStep(step);
     }
 
-    render(){
+    render() {
         return (
-            <Game gameData={this.state.gameData} onClick={this.handleOnClick} onHistoryClick={this.handleOnHistoryClick}/>
+            <div>
+                <Game
+                    gameData={this.state.gameData}
+                    onClick={this.handleOnClick}
+                    onHistoryClick={this.handleOnHistoryClick}/>
+                <Demo/>
+
+            </div>
         );
-       
+
     }
 
 }
